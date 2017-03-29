@@ -40,3 +40,39 @@ function successCallback(response){
       console.log(error);
   }
 }])
+
+.controller('ArticlesCreateCtrl', ['$scope', '$http', '$routeParams', '$location',function($scope, $http, $routeParams, $location){
+  $http.get('/categories').then(successCallback, errorCallback);
+
+  function successCallback(response){
+      //success code
+      //console.log(response);
+      $scope.categories = response.data;
+  }
+  function errorCallback(error){
+      //error code
+      console.log(error);
+  }
+
+  $scope.addArticle = function(){
+    var data = {
+      title: $scope.title,
+      body: $scope.body,
+      category: $scope.category
+    }
+    $http.post('/articles', data).then(successCallback, errorCallback);
+
+      function successCallback(data,status){
+        //success code
+        console.log(status);
+
+      }
+      function errorCallback(error){
+        //error code
+           console.log(error);
+      }
+      $location.path('/articles');
+
+  }
+
+}])
