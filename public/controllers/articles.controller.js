@@ -35,7 +35,7 @@ function errorCallback(error){
 
 }])
 
-.controller('ArticleDetailsCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+.controller('ArticleDetailsCtrl', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location){
 
 //console.log($routeParams.id);
 $http.get('/articles/'+$routeParams.id).then(successCallback, errorCallback);
@@ -48,6 +48,22 @@ function successCallback(response){
 function errorCallback(error){
     //error code
     console.log(error);
+}
+
+$scope.removeArticle = function(){
+  $http.delete('/articles/'+$routeParams.id).then(successCallback, errorCallback);
+
+  function successCallback(response){
+      //success code
+     // console.log($routeParams.id);
+     console.log(data)
+  }
+  function errorCallback(error){
+      //error code
+      console.log(error);
+  }
+
+$location.path('/articles')
 }
 
 }])
