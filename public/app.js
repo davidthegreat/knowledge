@@ -28,7 +28,7 @@ app.config(['$routeProvider', function($routeProvider){
 		}).
 		when('/articles/edit/:id',{
 			templateUrl: 'views/edit_article.view.html',
-			controller: 'ArticlesEditCtrl'
+			controller: 'ArticleEditCtrl'
 		}).
 		otherwise({redirectTo: '/categories'})
 }]);
